@@ -17,11 +17,8 @@ public class SubscriptionTypes extends BasePage {
     @FindBy(xpath = "//p[normalize-space()='Newsletter subscribers']")
     WebElement newsletterMenu;
 
-    @FindBy(xpath = "//p[normalize-space()='Newsletter subscribers']")
+    @FindBy(xpath = "//a[contains(@href,'NewsLetterSubscriptionType')]")
     WebElement subscriptionTypeMenu;
-
-    @FindBy(xpath = "//p[normalize-space()='Campaigns']")
-    WebElement campaignsMenu;
 
     @FindBy(xpath = "//h1[contains(text(),'Newsletter subscription types')]")
     WebElement pageTitle;
