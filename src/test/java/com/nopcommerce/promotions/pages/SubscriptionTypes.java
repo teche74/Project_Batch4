@@ -1,17 +1,23 @@
 package com.nopcommerce.promotions.pages;
 
+import java.time.Duration;
 import java.util.List;
 
+import com.nopcommerce.promotions.base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.nopcommerce.promotions.base.BasePage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SubscriptionTypes extends BasePage {
 
+    WebDriverWait wait;
+
     public SubscriptionTypes(WebDriver driver) {
         super(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     @FindBy(xpath = "//p[normalize-space()='Promotions']")
@@ -29,10 +35,38 @@ public class SubscriptionTypes extends BasePage {
     @FindBy(xpath = "//table[@id='subscriptiontypes-grid']//tbody//tr")
     List<WebElement> rows;
 
+    @FindBy(id = "Name")
+    WebElement subscriptionNameInput;
+
+    @FindBy(id = "DisplayOrder")
+    WebElement displayOrderInput;
+
+    @FindBy(id = "TickedByDefault")
+    WebElement tickedByDefaultCheckbox;
+
+    @FindBy(xpath = "//button[@name='save']")
+    WebElement saveButton;
+
+    @FindBy(xpath = "//span[@role='combobox']")
+    WebElement storeDropdown;
+
+    @FindBy(xpath = "//input[@class='select2-search__field']")
+    WebElement searchInput;
+
+    @FindBy(xpath = "//li[contains(text(),'nopCommerce admin demo store')]")
+    WebElement storeOption;
+
+    @FindBy(xpath = "//span[normalize-space()='Delete']")
+    WebElement deleteButton;
+
+    @FindBy(xpath = "//button[normalize-space()='Delete']")
+    WebElement confirmDeleteButton;
+
     public void navigateToSubscriptionTypes() {
         click(promotionsMenu);
+        wait.until(ExpectedConditions.visibilityOf(subscriptionTypesSection));
         click(subscriptionTypesSection);
-        isDisplayed(pageTitle); // wait for page load
+        wait.until(ExpectedConditions.visibilityOf(pageTitle));
     }
 
     public boolean isPageLoaded() {
@@ -40,9 +74,79 @@ public class SubscriptionTypes extends BasePage {
     }
 
     public int getRowCount() {
-        if (rows.size() == 0) {
-            return 0;
-        }
         return rows.size();
+    }
+
+    public void addEntry(String name, String displayOrder) {
+        click(addNewButton);
+
+        wait.until(ExpectedConditions.visibilityOf(subscriptionNameInput));
+
+        type(subscriptionNameInput, name);
+
+        selectLimitedStoreOption();
+
+        type(displayOrderInput, displayOrder);
+
+        click(tickedByDefaultCheckbox);
+
+        click(saveButton);
+
+        wait.until(ExpectedConditions.visibilityOf(pageTitle));
+    }
+
+    public void selectLimitedStoreOption() {
+        click(storeDropdown);
+        wait.until(ExpectedConditions.visibilityOf(searchInput));
+        type(searchInput, "nopCommerce admin demo store");
+        click(storeOption);
+    }
+
+    public void deleteLastEntry() {
+
+        if (rows.size() == 0) {
+            System.out.println("No records found to delete");
+            return;
+        }
+
+        WebElement lastRow = rows.get(rows.size() - 1);
+
+        WebElement editButton = lastRow.findElement(
+                By.xpath(".//a[contains(@href,'Edit')]")
+        );
+
+        click(editButton);
+
+        wait.until(ExpectedConditions.visibilityOf(deleteButton));
+        click(deleteButton);
+
+        wait.until(ExpectedConditions.visibilityOf(confirmDeleteButton));
+        click(confirmDeleteButton);
+
+        wait.until(ExpectedConditions.visibilityOf(pageTitle));
+    }
+
+    public void deleteByName(String name) {
+
+        for (WebElement row : rows) {
+
+            if (row.getText().contains(name)) {
+
+                WebElement editButton = row.findElement(
+                        By.xpath(".//a[contains(@href,'Edit')]")
+                );
+
+                click(editButton);
+
+                wait.until(ExpectedConditions.visibilityOf(deleteButton));
+                click(deleteButton);
+
+                wait.until(ExpectedConditions.visibilityOf(confirmDeleteButton));
+                click(confirmDeleteButton);
+
+                wait.until(ExpectedConditions.visibilityOf(pageTitle));
+                break;
+            }
+        }
     }
 }

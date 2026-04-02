@@ -11,20 +11,47 @@ public class SubscriptionTypesTest extends BaseTest {
 
     SubscriptionTypes page;
 
+    String testName = "TestUser_" + System.currentTimeMillis();
+
     @BeforeClass
     public void initPage() {
         page = new SubscriptionTypes(driver);
     }
 
-    @Test
+    @Test(priority = 1)
     public void verifySubscriptionTypesPage() {
         page.navigateToSubscriptionTypes();
         Assert.assertTrue(page.isPageLoaded(), "Page did not load properly");
     }
 
-    @Test
-    public void addingNewSubscriptionType() {
+    @Test(priority = 2)
+    public void verifyAddSubscriptionType() {
         page.navigateToSubscriptionTypes();
-        System.out.println("Row Count: " + page.getRowCount());
+
+        int beforeCount = page.getRowCount();
+        System.out.println("Before Count: " + beforeCount);
+
+        page.addEntry(testName, "5");
+
+        page.navigateToSubscriptionTypes();
+        int afterCount = page.getRowCount();
+        System.out.println("After Count: " + afterCount);
+
+        Assert.assertTrue(afterCount > beforeCount, "Entry was not added");
+    }
+
+    @Test(priority = 3)
+    public void verifyDeleteSubscriptionType() {
+        page.navigateToSubscriptionTypes();
+
+        int beforeCount = page.getRowCount();
+        System.out.println("Before Delete Count: " + beforeCount);
+
+        page.deleteByName(testName);
+        page.navigateToSubscriptionTypes();
+        int afterCount = page.getRowCount();
+        System.out.println("After Delete Count: " + afterCount);
+
+        Assert.assertTrue(afterCount < beforeCount, "Entry was not deleted");
     }
 }
