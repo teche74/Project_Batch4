@@ -17,20 +17,8 @@ public class SubscriptionTypes extends BasePage {
     @FindBy(xpath = "//p[normalize-space()='Promotions']")
     WebElement promotionsMenu;
 
-    @FindBy(xpath = "//p[normalize-space()='Discounts']")
-    WebElement discountsSection;
-
-    @FindBy(xpath = "//p[normalize-space()='Affiliates']")
-    WebElement affiliatesSection;
-
-    @FindBy(xpath = "//p[normalize-space()='Newsletter subscribers']")
-    WebElement NewsletterSubscribersSection;
-
     @FindBy(xpath = "//p[normalize-space()='Subscription types']")
-    WebElement SubscriptionTypesSection;
-
-    @FindBy(xpath = "//p[normalize-space()='Campaigns']")
-    WebElement CampaignsSection;
+    WebElement subscriptionTypesSection;
 
     @FindBy(xpath = "//h1[normalize-space()='Subscription types']")
     WebElement pageTitle;
@@ -38,12 +26,13 @@ public class SubscriptionTypes extends BasePage {
     @FindBy(xpath = "//a[normalize-space()='Add new']")
     WebElement addNewButton;
 
-    @FindBy(xpath = "//div[@id=\"subscriptiontypes-grid_wrapper\"]//table[@id=\"subscriptiontypes-grid\"]//tbody//tr")
+    @FindBy(xpath = "//table[@id='subscriptiontypes-grid']//tbody//tr")
     List<WebElement> rows;
 
     public void navigateToSubscriptionTypes() {
         click(promotionsMenu);
-        click(SubscriptionTypesSection);
+        click(subscriptionTypesSection);
+        isDisplayed(pageTitle); // wait for page load
     }
 
     public boolean isPageLoaded() {
@@ -51,6 +40,9 @@ public class SubscriptionTypes extends BasePage {
     }
 
     public int getRowCount() {
+        if (rows.size() == 0) {
+            return 0;
+        }
         return rows.size();
     }
 }

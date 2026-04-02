@@ -1,25 +1,30 @@
 package com.nopcommerce.promotions.tests;
 
-import com.nopcommerce.promotions.base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.nopcommerce.promotions.base.BaseTest;
 import com.nopcommerce.promotions.pages.SubscriptionTypes;
 
 public class SubscriptionTypesTest extends BaseTest {
 
-    SubscriptionTypes page = new SubscriptionTypes(driver);
+    SubscriptionTypes page;
 
-    @Test
-    public void verifySubscriptionTypesPage() {
-
-        page.navigateToSubscriptionTypes();
-
-        Assert.assertTrue(page.isPageLoaded());
+    @BeforeClass
+    public void initPage() {
+        page = new SubscriptionTypes(driver);
     }
 
     @Test
-    public void AddingNewSubscriptionType() {
-        System.out.println("Count : " + page.getRowCount());
+    public void verifySubscriptionTypesPage() {
+        page.navigateToSubscriptionTypes();
+        Assert.assertTrue(page.isPageLoaded(), "Page did not load properly");
+    }
+
+    @Test
+    public void addingNewSubscriptionType() {
+        page.navigateToSubscriptionTypes();
+        System.out.println("Row Count: " + page.getRowCount());
     }
 }

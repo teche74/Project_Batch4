@@ -11,10 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-
 import com.nopcommerce.promotions.pages.LoginPage;
 
 public class BaseTest {
+
     protected WebDriver driver;
 
     @BeforeClass
@@ -22,15 +22,12 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(70));
-
         driver.get("https://admin-demo.nopcommerce.com/admin/");
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("admin@yourstore.com", "admin");
 
-
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//p[normalize-space()='Dashboard']")));
     }
