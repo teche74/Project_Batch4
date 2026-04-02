@@ -3,6 +3,9 @@ package com.nopcommerce.promotions.base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class BasePage {
 
@@ -14,7 +17,9 @@ public class BasePage {
     }
 
     public void click(WebElement element) {
-        element.click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(element))
+                .click();
     }
 
     public void type(WebElement element, String text) {

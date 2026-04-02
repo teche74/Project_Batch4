@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SubscriptionTypes extends BasePage {
+public class DiscountPage extends BasePage {
 
-    public SubscriptionTypes(WebDriver driver) {
+    public DiscountPage(WebDriver driver) {
         super(driver);
     }
 
@@ -29,12 +29,12 @@ public class SubscriptionTypes extends BasePage {
     @FindBy(xpath = "//p[normalize-space()='Campaigns']")
     WebElement CampaignsSection;
 
-    @FindBy(xpath = "//h1[normalize-space()='Subscription types']")
+    @FindBy(xpath = "//h1[contains(text(),'Discounts')]")
     WebElement pageTitle;
 
-    public void navigateToSubscriptionTypes() {
+    public void navigateToDiscounts() {
         click(promotionsMenu);
-        click(SubscriptionTypesSection);
+        click(discountsSection);
     }
 
     public boolean isPageLoaded() {
