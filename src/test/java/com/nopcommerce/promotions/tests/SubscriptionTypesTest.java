@@ -1,23 +1,25 @@
 package com.nopcommerce.promotions.tests;
 
 import com.nopcommerce.promotions.base.BaseTest;
-import com.nopcommerce.promotions.pages.SubscriptionTypes;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.nopcommerce.promotions.pages.SubscriptionTypes;
+
 public class SubscriptionTypesTest extends BaseTest {
+
+    SubscriptionTypes page = new SubscriptionTypes(driver);
 
     @Test
     public void verifySubscriptionTypesPage() {
 
-        driver.findElement(By.xpath("//button[contains(text(),'Log in')]")).click();
-
-        SubscriptionTypes page = new SubscriptionTypes(driver);
-
         page.navigateToSubscriptionTypes();
 
-        Assert.assertTrue(page.isPageLoaded(),
-                "Subscription Types page not loaded");
+        Assert.assertTrue(page.isPageLoaded());
+    }
+
+    @Test
+    public void AddingNewSubscriptionType() {
+        System.out.println("Count : " + page.getRowCount());
     }
 }
