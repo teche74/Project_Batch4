@@ -32,7 +32,6 @@ public class CampaignsPageTest extends BaseTest {
 
         page.addCampaign(campaignName, "Test Subject", "Test Body");
 
-        page.navigateToCampaigns();
         int after = page.getCampaignCount();
 
         Assert.assertTrue(after > before, "Campaign not added");
@@ -40,27 +39,25 @@ public class CampaignsPageTest extends BaseTest {
 
     @Test(priority = 3)
     public void verifyDeleteCampaign() {
-        page.navigateToCampaigns();
 
         int before = page.getCampaignCount();
 
         page.deleteByName(campaignName);
 
-        page.navigateToCampaigns();
         int after = page.getCampaignCount();
+
+        System.out.println("after : " + after + " before : " + before);
 
         Assert.assertTrue(after < before, "Campaign not deleted");
     }
 
     @Test(priority = 4)
     public void verifyDeleteLastCampaign() {
-        page.navigateToCampaigns();
 
         int before = page.getCampaignCount();
 
         page.deleteLastCampaign();
 
-        page.navigateToCampaigns();
         int after = page.getCampaignCount();
 
         Assert.assertTrue(after <= before, "Delete last failed");

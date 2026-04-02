@@ -9,16 +9,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CampaignsPage extends BasePage {
 
-    WebDriverWait wait;
-
     public CampaignsPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
+
+    @FindBy(xpath = "//a[@id='nopSideBarPusher']")
+    WebElement sideBarNavigation;
 
     @FindBy(xpath = "//p[normalize-space()='Promotions']")
     WebElement promotionsMenu;
@@ -35,9 +34,6 @@ public class CampaignsPage extends BasePage {
     @FindBy(id = "campaigns-grid")
     WebElement campaignsGrid;
 
-    @FindBy(xpath = "//table[@id='campaigns-grid']//tbody//tr")
-    List<WebElement> rows;
-
     @FindBy(id = "Name")
     WebElement nameInput;
 
@@ -45,7 +41,7 @@ public class CampaignsPage extends BasePage {
     WebElement subjectInput;
 
     @FindBy(id = "Body")
-    WebElement bodyIframe;
+    WebElement bodyInput;
 
     @FindBy(xpath = "//button[@name='save']")
     WebElement saveButton;
@@ -56,7 +52,10 @@ public class CampaignsPage extends BasePage {
     @FindBy(xpath = "//button[normalize-space()='Delete']")
     WebElement confirmDeleteButton;
 
+    private By rowsLocator = By.xpath("//table[@id='campaigns-grid']//tbody//tr");
+
     public void navigateToCampaigns() {
+        hover(sideBarNavigation);
         click(promotionsMenu);
         wait.until(ExpectedConditions.visibilityOf(campaignsSection));
         click(campaignsSection);
@@ -67,8 +66,10 @@ public class CampaignsPage extends BasePage {
         return isDisplayed(pageTitle);
     }
 
+
     public int getCampaignCount() {
-        return rows.size();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(rowsLocator));
+        return driver.findElements(rowsLocator).size();
     }
 
     public void clickAddNew() {
@@ -85,15 +86,13 @@ public class CampaignsPage extends BasePage {
     }
 
     public void enterBody(String text) {
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(bodyIframe));
-        driver.findElement(By.tagName("body")).clear();
-        driver.findElement(By.tagName("body")).sendKeys(text);
-        driver.switchTo().defaultContent();
+        type(bodyInput, text);
     }
 
     public void clickSave() {
         click(saveButton);
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
+        wait.until(ExpectedConditions.visibilityOf(campaignsGrid));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(rowsLocator));
     }
 
     public void addCampaign(String name, String subject, String body) {
@@ -105,6 +104,7 @@ public class CampaignsPage extends BasePage {
     }
 
     public void deleteLastCampaign() {
+        List<WebElement> rows = driver.findElements(rowsLocator);
         if (rows.size() == 0) return;
 
         WebElement lastRow = rows.get(rows.size() - 1);
@@ -122,9 +122,12 @@ public class CampaignsPage extends BasePage {
         click(confirmDeleteButton);
 
         wait.until(ExpectedConditions.visibilityOf(pageTitle));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(rowsLocator));
     }
 
     public void deleteByName(String name) {
+        List<WebElement> rows = driver.findElements(rowsLocator);
+
         for (WebElement row : rows) {
             if (row.getText().contains(name)) {
 
@@ -141,6 +144,7 @@ public class CampaignsPage extends BasePage {
                 click(confirmDeleteButton);
 
                 wait.until(ExpectedConditions.visibilityOf(pageTitle));
+                wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(rowsLocator));
                 break;
             }
         }
