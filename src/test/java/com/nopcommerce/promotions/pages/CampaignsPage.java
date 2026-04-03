@@ -54,12 +54,22 @@ public class CampaignsPage extends BasePage {
 
     private By rowsLocator = By.xpath("//table[@id='campaigns-grid']//tbody//tr");
 
-    public void navigateToCampaigns() {
-        hover(sideBarNavigation);
+    public void navigateToCampaigns() throws InterruptedException{
+        if (!promotionsMenu.isDisplayed()) {
+            click(sideBarNavigation);
+        }
+
+        if(promotionsMenu.isDisplayed()){
+            System.out.println("Promtion Menu Displayed");
+        }
         click(promotionsMenu);
-        wait.until(ExpectedConditions.visibilityOf(campaignsSection));
+
+        Thread.sleep(4000);
+
+        if(campaignsSection.isDisplayed()){
+            System.out.println("Campaigns Section Displayed");
+        }
         click(campaignsSection);
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
     }
 
     public boolean isPageLoaded() {
@@ -74,7 +84,6 @@ public class CampaignsPage extends BasePage {
 
     public void clickAddNew() {
         click(addNewButton);
-        wait.until(ExpectedConditions.visibilityOf(nameInput));
     }
 
     public void enterCampaignName(String name) {
@@ -95,7 +104,7 @@ public class CampaignsPage extends BasePage {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(rowsLocator));
     }
 
-    public void addCampaign(String name, String subject, String body) {
+    public void addCampaign(String name, String subject, String body) throws InterruptedException {
         clickAddNew();
         enterCampaignName(name);
         enterSubject(subject);
