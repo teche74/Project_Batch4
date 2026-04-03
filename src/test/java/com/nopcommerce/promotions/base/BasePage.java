@@ -2,6 +2,7 @@ package com.nopcommerce.promotions.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,7 +11,7 @@ import java.time.Duration;
 public class BasePage {
 
     protected WebDriver driver;
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -46,5 +47,10 @@ public class BasePage {
 
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+
+    public void hover (WebElement element){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
     }
 }
