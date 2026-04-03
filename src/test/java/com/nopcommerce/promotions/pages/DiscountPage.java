@@ -45,7 +45,6 @@ public class DiscountPage extends BasePage {
 
     private By rowsLocator = By.xpath("//table[@id='discounts-grid']//tbody/tr");
 
-    // Helper for JS Click to bypass menu visibility issues
     private void jsClick(WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
