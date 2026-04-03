@@ -26,7 +26,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
 
-        driver.get("https://admin-demo.nopcommerce.com/admin/");
+        driver.get("https://admin-demo.nopcommerce.com/");
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("admin@yourstore.com", "admin");

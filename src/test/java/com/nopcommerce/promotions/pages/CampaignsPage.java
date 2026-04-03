@@ -59,7 +59,6 @@ public class CampaignsPage extends BasePage {
         click(promotionsMenu);
         wait.until(ExpectedConditions.visibilityOf(campaignsSection));
         click(campaignsSection);
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
     }
 
     public boolean isPageLoaded() {
