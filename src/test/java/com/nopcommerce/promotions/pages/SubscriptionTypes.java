@@ -67,7 +67,6 @@ public class SubscriptionTypes extends BasePage {
 
 
     public void navigateToSubscriptionTypes() {
-
         if (driver.getCurrentUrl().contains("SubscriptionType/List")) {
             wait.until(ExpectedConditions.visibilityOf(pageTitle));
             return;
@@ -86,7 +85,6 @@ public class SubscriptionTypes extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(subscriptionTypesSection));
         click(subscriptionTypesSection);
 
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
     }
 
 
