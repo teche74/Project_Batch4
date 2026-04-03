@@ -33,7 +33,6 @@ public class SubscriptionTypesTest extends BaseTest {
 
         page.addEntry(testName, "5");
 
-        page.navigateToSubscriptionTypes();
         int afterCount = page.getRowCount();
         System.out.println("After Count: " + afterCount);
 
@@ -47,8 +46,8 @@ public class SubscriptionTypesTest extends BaseTest {
         int beforeCount = page.getRowCount();
         System.out.println("Before Delete Count: " + beforeCount);
 
-        page.deleteByName(testName);
-        page.navigateToSubscriptionTypes();
+        page.deleteLastEntry();
+
         int afterCount = page.getRowCount();
         System.out.println("After Delete Count: " + afterCount);
 

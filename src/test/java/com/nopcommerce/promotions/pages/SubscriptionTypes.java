@@ -20,6 +20,9 @@ public class SubscriptionTypes extends BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
+    @FindBy(xpath = "//a[@id='nopSideBarPusher']")
+    WebElement sideBarNavigation;
+
     @FindBy(xpath = "//p[normalize-space()='Promotions']")
     WebElement promotionsMenu;
 
@@ -62,12 +65,28 @@ public class SubscriptionTypes extends BasePage {
     @FindBy(xpath = "//button[normalize-space()='Delete']")
     WebElement confirmDeleteButton;
 
+
     public void navigateToSubscriptionTypes() {
-        click(promotionsMenu);
+        if (driver.getCurrentUrl().contains("SubscriptionType/List")) {
+            wait.until(ExpectedConditions.visibilityOf(pageTitle));
+            return;
+        }
+
+        wait.until(ExpectedConditions.visibilityOf(promotionsMenu));
+
+        WebElement parentMenu = promotionsMenu.findElement(By.xpath("./ancestor::li"));
+
+        String classes = parentMenu.getAttribute("class");
+
+        if (!classes.contains("menu-open")) {
+            click(promotionsMenu);
+        }
+
         wait.until(ExpectedConditions.visibilityOf(subscriptionTypesSection));
         click(subscriptionTypesSection);
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
+
     }
+
 
     public boolean isPageLoaded() {
         return isDisplayed(pageTitle);
@@ -92,7 +111,6 @@ public class SubscriptionTypes extends BasePage {
 
         click(saveButton);
 
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
     }
 
     public void selectLimitedStoreOption() {
@@ -123,7 +141,6 @@ public class SubscriptionTypes extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(confirmDeleteButton));
         click(confirmDeleteButton);
 
-        wait.until(ExpectedConditions.visibilityOf(pageTitle));
     }
 
     public void deleteByName(String name) {
@@ -144,7 +161,6 @@ public class SubscriptionTypes extends BasePage {
                 wait.until(ExpectedConditions.visibilityOf(confirmDeleteButton));
                 click(confirmDeleteButton);
 
-                wait.until(ExpectedConditions.visibilityOf(pageTitle));
                 break;
             }
         }
