@@ -39,6 +39,9 @@ The Promotions module consists of multiple submodules, each handled by different
 * Data validation from response body
 * Integration checks with UI
 
+
+<img width="499" height="545" alt="image" src="https://github.com/user-attachments/assets/a948395e-be23-4732-aef7-ae2efc6b1e74" />
+
 ---
 
 ## 📂 Modules Covered
