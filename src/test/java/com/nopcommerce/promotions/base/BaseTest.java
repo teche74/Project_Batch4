@@ -1,6 +1,7 @@
 package com.nopcommerce.promotions.base;
 
 import java.time.Duration;
+import java.util.HashMap;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,14 @@ public class BaseTest {
     @BeforeClass
     public void setup() {
         ChromeOptions options = new ChromeOptions();
+        HashMap<String, Object> prefs = new HashMap<>();
+
+        prefs.put("download.default_directory", "C:\\Users\\vanshaj.yadav\\Downloads");
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("safebrowsing.enabled", true);
+
+        options.setExperimentalOption("prefs", prefs);
+
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);

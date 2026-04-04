@@ -30,13 +30,16 @@ public class SubscriptionTypesTest extends BaseTest {
 
         int beforeCount = page.getRowCount();
         System.out.println("Before Count: " + beforeCount);
+        System.out.println("Before Count: " + beforeCount);
 
         page.addEntry(testName, "5");
 
         int afterCount = page.getRowCount();
         System.out.println("After Count: " + afterCount);
+        System.out.println("After Count: " + afterCount);
 
         Assert.assertTrue(afterCount > beforeCount, "Entry was not added");
+
     }
 
     @Test(priority = 3)

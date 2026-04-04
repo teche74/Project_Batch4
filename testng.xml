@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/ujjwal.bisht/Desktop/Assessment_4th_March">
+    <test verbose="2" preserve-order="true" name="C:/Users/vanshaj.yadav/Desktop/Assignment/Project_Batch4">
         <classes>
             <class name="com.nopcommerce.promotions.api.campaigns.CampaignsCreate">
                 <methods>
@@ -16,6 +16,11 @@
             <class name="com.nopcommerce.promotions.api.login.LoginApiTest">
                 <methods>
                     <include name="testLogin"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.addnew">
+                <methods>
+                    <include name="addnewfile"/>
                 </methods>
             </class>
             <class name="com.nopcommerce.promotions.api.subscriptionType.CreateNewSubscriptionTypeList">
@@ -34,6 +39,11 @@
                     <include name="verifyAddCampaign"/>
                     <include name="verifyDeleteCampaign"/>
                     <include name="verifyDeleteLastCampaign"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.tests.NewsletterModuleTest">
+                <methods>
+                    <include name="testNewsletterModule"/>
                 </methods>
             </class>
             <class name="com.nopcommerce.promotions.tests.SubscriptionTypesTest">
