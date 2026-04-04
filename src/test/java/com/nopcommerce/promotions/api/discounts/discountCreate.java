@@ -21,7 +21,7 @@ public class discountCreate extends Base {
         request.given()
                 .cookies(cookies)
                 .contentType("application/x-www-form-urlencoded")
-                .formParam("Name", "Anushka_Promo_API")
+                .formParam("Name", "Discount4")
                 .formParam("DiscountTypeId", "1")
                 .formParam("UsePercentage", "true")
                 .formParam("DiscountPercentage", "15")
