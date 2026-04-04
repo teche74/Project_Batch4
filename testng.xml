@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/ujjwal.bisht/Desktop/Assessment_4th_March">
+    <test verbose="2" preserve-order="true" name="C:\Users\anushka.ladukar\IdeaProjects\Project_Batch4">
         <classes>
+            <class name="com.nopcommerce.promotions.api.login.LoginApiTest">
+                <methods>
+                    <include name="testLogin"/>
+                </methods>
+            </class>
+
+            <class name="com.nopcommerce.promotions.api.discounts.discountCreate">
+                <methods>
+                    <include name="testCreateDiscount"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.discounts.discountDelete">
+                <methods>
+                    <include name="testDeleteDiscount"/>
+                </methods>
+            </class>
+
             <class name="com.nopcommerce.promotions.api.campaigns.CampaignsCreate">
                 <methods>
                     <include name="testCreateCampaign"/>
@@ -13,36 +30,19 @@
                     <include name="deleteSingleCampaignsTest"/>
                 </methods>
             </class>
-            <class name="com.nopcommerce.promotions.api.login.LoginApiTest">
+
+            <class name="com.nopcommerce.promotions.api.newsletter.addnew">
                 <methods>
-                    <include name="testLogin"/>
+                    <include name="addnewfile"/>
                 </methods>
             </class>
-            <class name="com.nopcommerce.promotions.api.subscriptionType.CreateNewSubscriptionTypeList">
-                <methods>
-                    <include name="createNewSubscriptionTypeListTest"/>
-                </methods>
-            </class>
-            <class name="com.nopcommerce.promotions.api.subscriptionType.DeleteSubscriptionTypeElement">
-                <methods>
-                    <include name="deleteSubscriptionTypeElement"/>
-                </methods>
-            </class>
-            <class name="com.nopcommerce.promotions.tests.CampaignsPageTest">
-                <methods>
-                    <include name="verifyCampaignPageLoaded"/>
-                    <include name="verifyAddCampaign"/>
-                    <include name="verifyDeleteCampaign"/>
-                    <include name="verifyDeleteLastCampaign"/>
-                </methods>
-            </class>
-            <class name="com.nopcommerce.promotions.tests.SubscriptionTypesTest">
-                <methods>
-                    <include name="verifySubscriptionTypesPage"/>
-                    <include name="verifyAddSubscriptionType"/>
-                    <include name="verifyDeleteSubscriptionType"/>
-                </methods>
-            </class>
+
+            <class name="com.nopcommerce.promotions.tests.CampaignsPageTest"/>
+            <class name="com.nopcommerce.promotions.tests.DiscountTest"/>
+
         </classes>
     </test>
 </suite>
+
+
+

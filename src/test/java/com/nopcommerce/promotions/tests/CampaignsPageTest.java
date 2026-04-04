@@ -19,17 +19,14 @@ public class CampaignsPageTest extends BaseTest {
     }
 
     @Test(priority = 1)
-    public void verifyCampaignPageLoaded() {
+    public void verifyCampaignPageLoaded() throws InterruptedException{
         page.navigateToCampaigns();
         Assert.assertTrue(page.isPageLoaded(), "Campaign page not loaded");
     }
 
-    @Test(priority = 2)
-    public void verifyAddCampaign() {
-        page.navigateToCampaigns();
-
+    @Test(priority = 2 , dependsOnMethods = "verifyCampaignPageLoaded")
+    public void verifyAddCampaign() throws InterruptedException{
         int before = page.getCampaignCount();
-
         page.addCampaign(campaignName, "Test Subject", "Test Body");
 
         int after = page.getCampaignCount();
@@ -37,7 +34,7 @@ public class CampaignsPageTest extends BaseTest {
         Assert.assertTrue(after > before, "Campaign not added");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3 , dependsOnMethods = "verifyAddCampaign")
     public void verifyDeleteCampaign() {
 
         int before = page.getCampaignCount();
@@ -51,7 +48,7 @@ public class CampaignsPageTest extends BaseTest {
         Assert.assertTrue(after < before, "Campaign not deleted");
     }
 
-    @Test(priority = 4)
+    @Test(priority = 4 , dependsOnMethods = "verifyDeleteCampaign")
     public void verifyDeleteLastCampaign() {
 
         int before = page.getCampaignCount();

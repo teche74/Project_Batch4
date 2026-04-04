@@ -11,7 +11,7 @@ import java.time.Duration;
 public class BasePage {
 
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    private WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -49,8 +49,8 @@ public class BasePage {
         return driver.getCurrentUrl();
     }
 
-    public void hover(WebElement ele){
+    public void hover (WebElement element){
         Actions actions = new Actions(driver);
-        actions.moveToElement(ele).perform();
+        actions.moveToElement(element).perform();
     }
 }
