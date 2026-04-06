@@ -8,6 +8,16 @@
                     <include name="testLogin"/>
                 </methods>
             </class>
+            <class name="com.nopcommerce.promotions.api.Affiliate.AffiliateCreate">
+                <methods>
+                    <include name="addAffiliateTest"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.Affiliate.deleteAffiliate">
+                <methods>
+                    <include name="deleteAffiliateTest"/>
+                </methods>
+            </class>
             <class name="com.nopcommerce.promotions.api.campaigns.CampaignsCreate">
                 <methods>
                     <include name="testCreateCampaign"/>
