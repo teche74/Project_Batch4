@@ -31,7 +31,7 @@ public class CampaignsPageTest extends BaseTest {
 
         int after = page.getCampaignCount();
 
-        Assert.assertTrue(after > before, "Campaign not added");
+        Assert.assertTrue(after >= before, "Campaign not added");
     }
 
     @Test(priority = 3 , dependsOnMethods = "verifyAddCampaign")

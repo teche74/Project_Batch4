@@ -1,58 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/vanshaj.yadav/Desktop/Assignment/Project_Batch4">
+
+<suite name="All Test Suite" parallel="false" thread-count="1">
+
+    <test name="Project_Batch4" verbose="2" preserve-order="true">
+
         <classes>
-            <class name="com.nopcommerce.promotions.api.campaigns.CampaignsCreate">
+
+            <class name="com.nopcommerce.promotions.tests.AffiliatesPageTest">
                 <methods>
-                    <include name="testCreateCampaign"/>
-                </methods>
-            </class>
-            <class name="com.nopcommerce.promotions.api.campaigns.CampaignsDelete">
-                <methods>
-                    <include name="deleteSingleCampaignsTest"/>
-                </methods>
-            </class>
-            <class name="com.nopcommerce.promotions.api.login.LoginApiTest">
-                <methods>
-                    <include name="testLogin"/>
+                    <include name="verifyAffiliatePageLoaded"/>
+                    <include name="verifyAddAffiliate"/>
+                    <include name="verifyUpdateAffiliate"/>
+                    <include name="verifyDeleteAffiliate"/>
                 </methods>
             </class>
 
-            <class name="com.nopcommerce.promotions.api.discounts.discountCreate">
+            <class name="com.nopcommerce.promotions.tests.CampaignsPageTest">
                 <methods>
-                    <include name="testCreateDiscount"/>
-                </methods>
-            </class>
-            <class name="com.nopcommerce.promotions.api.discounts.discountDelete">
-                <methods>
-                    <include name="testDeleteDiscount"/>
-                </methods>
-            </class>
-
-            <class name="com.nopcommerce.promotions.api.campaigns.CampaignsCreate">
-                <methods>
-                    <include name="testCreateCampaign"/>
-                </methods>
-            </class>
-            <class name="com.nopcommerce.promotions.api.campaigns.CampaignsDelete">
-                <methods>
-                    <include name="deleteSingleCampaignsTest"/>
+                    <include name="verifyCampaignPageLoaded"/>
+                    <include name="verifyAddCampaign"/>
+                    <include name="verifyDeleteCampaign"/>
+                    <include name="verifyDeleteLastCampaign"/>
                 </methods>
             </class>
 
-            <class name="com.nopcommerce.promotions.api.newsletter.addnew">
+            <class name="com.nopcommerce.promotions.tests.DiscountTest">
                 <methods>
-                    <include name="addnewfile"/>
+                    <include name="verifyDiscountPageLoaded"/>
+                    <include name="verifyAddDiscount"/>
+                    <include name="verifyDeleteDiscount"/>
                 </methods>
             </class>
 
-            <class name="com.nopcommerce.promotions.tests.CampaignsPageTest"/>
-            <class name="com.nopcommerce.promotions.tests.DiscountTest"/>
+            <class name="com.nopcommerce.promotions.tests.NewsletterModuleTest">
+                <methods>
+                    <include name="testNewsletterModule"/>
+                </methods>
+            </class>
+
+            <class name="com.nopcommerce.promotions.tests.SubscriptionTypesTest">
+                <methods>
+                    <include name="verifySubscriptionTypesPage"/>
+                    <include name="verifyAddSubscriptionType"/>
+                    <include name="verifyDeleteSubscriptionType"/>
+                </methods>
+            </class>
 
         </classes>
+
     </test>
+
 </suite>
-
-
-

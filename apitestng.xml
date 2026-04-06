@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="false" thread-count="1">
+    <test name="Project_Batch4" verbose="2" preserve-order="true">
+        <classes>
+            <class name="com.nopcommerce.promotions.api.login.LoginApiTest">
+                <methods>
+                    <include name="testLogin"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.campaigns.CampaignsCreate">
+                <methods>
+                    <include name="testCreateCampaign"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.campaigns.CampaignsDelete">
+                <methods>
+                    <include name="deleteSingleCampaignsTest"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.discounts.discountCreate">
+                <methods>
+                    <include name="testCreateDiscount"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.discounts.discountDelete">
+                <methods>
+                    <include name="testDeleteDiscount"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.addnew">
+                <methods>
+                    <include name="addnewfile"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.editandsave">
+                <methods>
+                    <include name="editAndSaveSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.search">
+                <methods>
+                    <include name="searchSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.exportcsv">
+                <methods>
+                    <include name="exportCSVSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.importcsv">
+                <methods>
+                    <include name="importCSVSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.deletesubscriber">
+                <methods>
+                    <include name="deleteSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.subscriptionType.CreateNewSubscriptionTypeList">
+                <methods>
+                    <include name="createNewSubscriptionTypeListTest"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.subscriptionType.DeleteSubscriptionTypeElement">
+                <methods>
+                    <include name="deleteSubscriptionTypeElement"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
