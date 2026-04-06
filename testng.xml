@@ -18,9 +18,34 @@
                     <include name="testLogin"/>
                 </methods>
             </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.search">
+                <methods>
+                    <include name="searchSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.exportcsv">
+                <methods>
+                    <include name="exportCSVSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.importcsv">
+                <methods>
+                    <include name="importCSVSubscriber"/>
+                </methods>
+            </class>
             <class name="com.nopcommerce.promotions.api.newsletter.addnew">
                 <methods>
                     <include name="addnewfile"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.editandsave">
+                <methods>
+                    <include name="editAndSaveSubscriber"/>
+                </methods>
+            </class>
+            <class name="com.nopcommerce.promotions.api.newsletter.deletesubscriber">
+                <methods>
+                    <include name="deleteSubscriber"/>
                 </methods>
             </class>
             <class name="com.nopcommerce.promotions.api.subscriptionType.CreateNewSubscriptionTypeList">
