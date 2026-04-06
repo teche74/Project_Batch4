@@ -5,6 +5,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class AffiliatesPage extends BasePage {
     
     @FindBy(xpath = "//a[@class='btn btn-primary']")
     WebElement addNewBtn;
+
+    @FindBy(xpath = "//button[@class='btn btn-tool']")
+    WebElement dropAdd;
 
     @FindBy(id = "Address_FirstName")
     WebElement firstName;
@@ -83,6 +87,9 @@ public class AffiliatesPage extends BasePage {
     public void addAffiliate(String fname, String lname, String mail) {
 
         click(addNewBtn);
+        click(dropAdd);
+
+        wait.until(ExpectedConditions.visibilityOf(firstName));
         type(firstName, fname);
         type(lastName, lname);
         type(email, mail);
@@ -109,14 +116,8 @@ public class AffiliatesPage extends BasePage {
 
     public void updateFirstAffiliate() {
 
-        for (int i = 0; i < 3; i++) {
-            try {
-                click(editBtn);
-                break;
-            } catch (StaleElementReferenceException e) {
-                System.out.println("Retry edit click...");
-            }
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(editBtn));
+        click(editBtn);
 
         type(company, "UpdatedCompany");
 
