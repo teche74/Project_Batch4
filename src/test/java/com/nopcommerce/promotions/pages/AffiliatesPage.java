@@ -1,6 +1,7 @@
 package com.nopcommerce.promotions.pages;
 
 import com.nopcommerce.promotions.base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,8 +29,12 @@ public class AffiliatesPage extends BasePage {
     @FindBy(xpath = "//a[@class='btn btn-primary']")
     WebElement addNewBtn;
 
-    @FindBy(xpath = "//button[@class='btn btn-tool']")
+    @FindBy(xpath = "//i[@class='fa toggle-icon fa-plus']")
     WebElement dropAdd;
+
+    @FindBy(xpath = "//i[@class='fa toggle-icon fa-minus']")
+    WebElement dropSub;
+
 
     @FindBy(id = "Address_FirstName")
     WebElement firstName;
@@ -84,12 +89,23 @@ public class AffiliatesPage extends BasePage {
         return isDisplayed(pageTitle);
     }
 
+
+
     public void addAffiliate(String fname, String lname, String mail) {
-
+        
         click(addNewBtn);
-        click(dropAdd);
 
-        wait.until(ExpectedConditions.visibilityOf(firstName));
+        if (driver.findElements(By.xpath("//i[contains(@class,'fa-plus')]")).size() > 0) {
+
+            WebElement plus = driver.findElement(By.xpath("//i[contains(@class,'fa-plus')]"));
+            wait.until(ExpectedConditions.elementToBeClickable(plus));
+            plus.click();
+        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//i[contains(@class,'fa-minus')]")
+        ));
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Address_FirstName")));
         type(firstName, fname);
         type(lastName, lname);
         type(email, mail);
