@@ -11,7 +11,6 @@ public class PromotionsPage extends BasePage {
         super(driver);
     }
 
-    // 🔍 Elements (optional if you want UI navigation)
     @FindBy(xpath = "//p[contains(text(),'Promotions')]")
     WebElement promotionsMenu;
 
@@ -21,12 +20,10 @@ public class PromotionsPage extends BasePage {
     @FindBy(xpath = "//h1[contains(text(),'Newsletter subscribers')]")
     WebElement pageHeading;
 
-    // 📍 NAVIGATION (DIRECT URL - BEST PRACTICE)
     public NewsletterListPage goToNewsletter() {
 
         driver.get("https://admin-demo.nopcommerce.com/Admin/NewsLetterSubscription/List");
 
-        // Wait handled via BasePage method
         isDisplayed(pageHeading);
 
         System.out.println("Navigated to Newsletter page");
@@ -34,7 +31,7 @@ public class PromotionsPage extends BasePage {
         return new NewsletterListPage(driver);
     }
 
-    // 📍 OPTIONAL (UI Navigation if needed)
+
     public NewsletterListPage goToNewsletterViaUI() {
 
         click(promotionsMenu);

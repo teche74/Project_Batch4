@@ -11,7 +11,7 @@ public class NewsletterDetailsPage extends BasePage {
         super(driver);
     }
 
-    // 🔍 Elements
+
     @FindBy(id = "Email")
     WebElement emailField;
 
@@ -27,26 +27,24 @@ public class NewsletterDetailsPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'alert-success')]")
     WebElement successMessage;
 
-    // ✏️ ENTER EMAIL
     public void enterEmail(String email) {
         type(emailField, email);
         System.out.println("Email entered: " + email);
     }
 
-    // 💾 SAVE
     public void clickSave() {
         click(saveBtn);
         System.out.println("Saved successfully");
     }
 
-    // ❌ DELETE
+
     public void deleteSubscriber() {
-        click(deleteBtn);          // Click delete
-        click(confirmDeleteBtn);   // Confirm delete
+        click(deleteBtn);
+        click(confirmDeleteBtn);
         System.out.println("Subscriber deleted successfully");
     }
 
-    // ✅ VALIDATION METHOD (FOR ASSERTIONS)
+
     public boolean isSuccessMessageDisplayed() {
         return isDisplayed(successMessage);
     }
