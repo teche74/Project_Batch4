@@ -9,8 +9,6 @@ import com.nopcommerce.promotions.pages.AffiliatesPage;
 public class AffiliatesPageTest extends BaseTest {
     AffiliatesPage page;
 
-    String fname = "QA";
-    String lname = "Tester";
     String email = "qa_" + System.currentTimeMillis() + "@test.com";
 
     @BeforeClass
@@ -31,11 +29,11 @@ public class AffiliatesPageTest extends BaseTest {
 
         int before = page.getAffiliateCount();
 
-        page.addAffiliate(fname, lname, email);
+        page.addAffiliate(email);
 
         int after = page.getAffiliateCount();
 
-        Assert.assertTrue(after >= before, "Affiliate not added");
+        Assert.assertTrue(after >= before, "Affiliate data not added");
     }
 
     @Test(priority = 3, dependsOnMethods = "verifyAddAffiliate")
@@ -43,7 +41,8 @@ public class AffiliatesPageTest extends BaseTest {
 
         page.updateFirstAffiliate();
 
-        Assert.assertTrue(true, "Update failed");
+        Assert.assertTrue(page.isSuccessMessageDisplayed(),
+                "Update failed: Success message not displayed");
     }
 
     @Test(priority = 4, dependsOnMethods = "verifyUpdateAffiliate")
