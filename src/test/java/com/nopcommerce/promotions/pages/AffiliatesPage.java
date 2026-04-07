@@ -29,12 +29,14 @@ public class AffiliatesPage extends BasePage {
     @FindBy(xpath = "//a[@class='btn btn-primary']")
     WebElement addNewBtn;
 
+    @FindBy(xpath = "//div[@class='alert alert-success alert-dismissable']")
+    private WebElement sucessMessage;
+
     @FindBy(xpath = "//i[@class='fa toggle-icon fa-plus']")
     WebElement dropAdd;
 
     @FindBy(xpath = "//i[@class='fa toggle-icon fa-minus']")
     WebElement dropSub;
-
 
     @FindBy(id = "Address_FirstName")
     WebElement firstName;
@@ -91,8 +93,8 @@ public class AffiliatesPage extends BasePage {
 
 
 
-    public void addAffiliate(String fname, String lname, String mail) {
-        
+    public void addAffiliate(String mail) {
+
         click(addNewBtn);
 
         if (driver.findElements(By.xpath("//i[contains(@class,'fa-plus')]")).size() > 0) {
@@ -106,8 +108,8 @@ public class AffiliatesPage extends BasePage {
         ));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Address_FirstName")));
-        type(firstName, fname);
-        type(lastName, lname);
+        type(firstName, "tester");
+        type(lastName, "QA");
         type(email, mail);
         type(company, "Test Company");
 
@@ -138,6 +140,10 @@ public class AffiliatesPage extends BasePage {
         type(company, "UpdatedCompany");
 
         click(saveBtn);
+    }
+    public boolean isSuccessMessageDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(sucessMessage));
+        return sucessMessage.isDisplayed();
     }
 
 
